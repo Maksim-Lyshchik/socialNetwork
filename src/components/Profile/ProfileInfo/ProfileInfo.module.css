@@ -1,0 +1,10 @@
+/*.content {
+  grid-area: c;
+  background-color: dodgerblue;
+}*/
+.discriptionBlock {
+    padding: 10px;
+}
+.background img{
+    width: 1200px;
+}

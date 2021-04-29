@@ -1,0 +1,24 @@
+.nav {
+    grid-area: n;
+    background-color: indigo;
+    padding: 20px;
+  }
+.item a{
+  color: white;
+    text-decoration: none;
+}
+
+.item a.active {
+  color: gold;
+}
+.imgFriends{
+    display: flex;
+}
+.imgFriend{
+    padding: 10px;
+}
+.imgFriends img{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+}
