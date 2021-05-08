@@ -1,3 +1,12 @@
+import profileReducer from "./profile-reducer";
+import sitebarReducer from "./sitebar-reducer";
+import dialogsReducer from "./dialogs-reducer";
+
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
+const SEND_MESSAGE = 'SEND-MESSAGE';
+
 let store = {
     _state: {
         profilePage: {
@@ -32,6 +41,7 @@ let store = {
                 {id: 7, message: 'No'},
                 {id: 8, message: 'Exisesise'}
             ],
+            newMessageBody: ''
         },
         /*    sitebar: [
                 {id: 1, name: Profile, link: profile},
@@ -52,36 +62,17 @@ let store = {
         this._callSubscriber = observer;
     },
 
-    addPost() {
-        let newPost = {
-            id: 7,
-            message: this._state.profilePage.newPostText,
-            likesCount: 0,
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-
-    },
-    updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber(this._state);
-    },
-
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            let newPost = {
-                id: 7,
-                message: this._state.profilePage.newPostText,
-                likesCount: 0,
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = '';
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber(this._state);
-        }
-    },
+
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagesPage = dialogsReducer()(this._state.messagesPage, action);
+        this._state.sitebar = sitebarReducer(this._state.sitebar, action);
+
+        this._callSubscriber(this._state);
+    }
 }
+
+
 
 
 window.store = store;
