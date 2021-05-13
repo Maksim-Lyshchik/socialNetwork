@@ -9,14 +9,15 @@ import {sendMessageCreat, updateNewMessageBodyCreator} from "../../../redux/dial
 const AddMessage = (props) => {
 
 
-    let newMessageBody = props.store.getState().messagesPage.newMessageBody;
+    //let newMessageBody = props.store.getState().messagesPage.newMessageBody;
+    let newMessageBody = props.newMessageBody;
 
     let onSendMessageClick = () => {
-        props.store.dispatch(sendMessageCreat());
+        props.sendMessage();
     }
     let onNewMessageChange = (e) => {
         let body = e.target.value
-        props.store.dispatch(updateNewMessageBodyCreator(body));
+        props.updateNewMessageBody(body);
     }
 
     return (
