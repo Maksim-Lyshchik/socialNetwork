@@ -2,3 +2,11 @@
     grid-area: h;
     background-color: rgb(107, 238, 107);
 }
+
+.header img {
+    width: 80px;
+}
+
+.loginBlock {
+    float: right;
+}
