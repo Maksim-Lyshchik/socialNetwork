@@ -9,12 +9,12 @@ const Dialogs = (props) => {
     let state = props.messagesPage;
 
     let dialogsElements = state.dialogs.map((d) => <DialogItem name={d.name} id={d.id}/>);
-    let messagesElements = state.messagesData.map((m) => <Message message={m.message}/> );
+    let messagesElements = state.messagesData.map((m) => <Message message={m.message}/>);
     return (
         <div>
             <div className={s.dialogs}>
                 <div className={s.dialogsItems}>
-                    { dialogsElements }
+                    {dialogsElements}
                 </div>
                 <div className={s.messages}>
                     <div>{messagesElements}</div>
@@ -22,7 +22,8 @@ const Dialogs = (props) => {
             </div>
             <AddMessage updateNewMessageBody={props.updateNewMessageBody}
                         sendMessage={props.sendMessage}
-                        newMessageBody={props.newMessageBody}/>
+                        newMessageBody={props.newMessageBody}
+                        isAuth={props.isAuth}/>
         </div>
 
     )
