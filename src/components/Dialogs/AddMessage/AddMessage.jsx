@@ -1,35 +1,26 @@
 import React from 'react';
 import s from './AddMessage.module.css';
-import {Redirect} from 'react-router-dom'
+import {Field, reduxForm} from "redux-form";
 
 
 
 
-const AddMessage = (props) => {
 
-
+const AddMessageForm = (props) => {
     let newMessageBody = props.newMessageBody;
 
-    let onSendMessageClick = () => {
-        props.sendMessage();
-    }
-    let onNewMessageChange = (e) => {
-        let body = e.target.value
-        props.updateNewMessageBody(body);
-    }
-
     return (
-            <div className={s.addText}>
+            <form onSubmit={props.handleSubmit} className={s.addText}>
                 <div>
-                    <textarea value={newMessageBody}
-                              onChange={onNewMessageChange}
-                              placeholder='Enter your message'></textarea>
+                    <Field component='textarea' name='newMessageBody' placeholder='Enter your message'/>
                 </div>
                 <div>
-                    <button onClick={ onSendMessageClick }>Send</button>
+                    <button>Send</button>
                 </div>
-            </div>
+            </form>
     )
 }
 
-export default AddMessage;
+const AddMessageFormRedux = reduxForm({form: 'dialogMessageForm'})(AddMessageForm)
+
+export default AddMessageFormRedux;
