@@ -2,28 +2,16 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import {Field, reduxForm} from "redux-form";
-import {maxLenghtCreator, required} from "../../../utils/validators/validators";
-import {Element} from "../../../hoc/widhChildProps";
+import {maxLengthCreator, required} from "../../../utils/validators/validators";
+import {Textarea} from "../../common/FormsControls/FormControls";
 
 const MyPosts = (props) => {
 
     let postsElement = props.posts.map((p) => <Post message={p.message} likeCounts={p.likesCount}/>);
 
-    let newPostElement = React.createRef();
-
     let onAddPost = (values) => {
         props.addPost(values.newPostText);
     }
-
-/*    let onPostChange = () => {
-        let text = newPostElement.current.value;
-        props.updateNewPostText(text)
-    }
-
-    let addNewPost = (value) => {
-        alert('value.newPostText')
-    }*/
-
     return (<div className={s.postBlock}>
         <h3>My post</h3>
         <AddPostFormRedux onSubmit={onAddPost}/>
@@ -35,8 +23,7 @@ const MyPosts = (props) => {
 
 export default MyPosts
 
-export const Textarea = Element('textarea');
-const maxLength50 = maxLenghtCreator(50);
+const maxLength50 = maxLengthCreator(50);
 
 let AddNewPostForm = (props) => {
     return (

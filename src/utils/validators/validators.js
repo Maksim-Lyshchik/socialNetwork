@@ -1,4 +1,3 @@
-import React from "react";
 
 export const required = value => {
     if (value) return undefined;
@@ -6,7 +5,7 @@ export const required = value => {
 }
 
 
-export const maxLenghtCreator = (maxLenght) => (value) => {
-    if (value.length > maxLenght) return `Max length is ${maxLenght} symbols`;
+export const maxLengthCreator = (maxLength) => (value) => {
+    if (value.length > maxLength) return `Max length is ${maxLength} symbols`;
     return undefined;
 }
