@@ -5,8 +5,7 @@ import {Field, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
 import {Textarea} from "../../common/FormsControls/FormControls";
 
-const MyPosts = (props) => {
-
+const MyPosts = React.memo(props => {
     let postsElement = props.posts.map((p) => <Post message={p.message} likeCounts={p.likesCount}/>);
 
     let onAddPost = (values) => {
@@ -19,7 +18,7 @@ const MyPosts = (props) => {
             {postsElement}
         </div>
     </div>)
-}
+})
 
 export default MyPosts
 

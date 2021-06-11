@@ -8,7 +8,6 @@ import {
 import {connect} from "react-redux";
 import Users from "./Users";
 import PreLoader from "../common/Preloader/Preloader";
-import {withAuthRedirect} from "../../hoc/widhAuthRedirect";
 import {compose} from "redux";
 import {
     getCurrentPage,
@@ -20,11 +19,13 @@ import {
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        let {currentPage, pageSize} = this.props;
+        this.props.getUsers(currentPage, pageSize);
     }
 
     onPageChenged = (pageNumber) => {
-        this.props.getUsers(pageNumber, this.props.pageSize);
+        let {pageSize} = this.props;
+        this.props.getUsers(pageNumber, pageSize);
     }
 
     render() {
@@ -43,17 +44,6 @@ class UsersContainer extends React.Component {
     }
 }
 
-/*let mapStateToProps = (state) => {
-    return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress,
-    }
-}*/
-
 let mapStateToProps = (state) => {
     return {
         users: getUsers(state),
@@ -65,10 +55,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-
-
 export default compose(
-    //withAuthRedirect,
     connect(mapStateToProps, {
         follow,
         unfollow,
