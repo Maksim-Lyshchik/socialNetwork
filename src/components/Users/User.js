@@ -3,7 +3,7 @@ import styles from "./users.module.css";
 import userPhoto from "../../assets/images/users.png";
 import {NavLink} from "react-router-dom";
 
-let Users = ({user, followingInProgress, follow, unfollow, ...props}) => {
+let Users = ({user, followingInProgress, follow, unfollow}) => {
     return (
         <div>
                 <span>
